@@ -14,8 +14,12 @@ const displayData = (data,isShow)=>{
     if(isShow){
         const showAll =  document.getElementById('showAll')
         showAll.classList.add('d-none')
+        const spinner = document.getElementById('spinner')
+        spinner.classList.add('d-none')
     }else{
         data = data.slice(0,6)
+        const spinner = document.getElementById('spinner')
+        spinner.classList.add('d-none')
     }
    
     
@@ -62,7 +66,8 @@ const modalInformation = async(id)=>{
 }
 
 const showModalDisplay = (info)=>{
-    console.log(info)
+    const inputData =  info?.input_output_examples[0]?.input
+    const outputData =  info?.input_output_examples[0]?.output
     const priceInfo = info.pricing
     const img = info?.image_link[0]
     const  modalImgContainer = document.getElementById('modalImg')
@@ -74,6 +79,11 @@ const showModalDisplay = (info)=>{
         <img src=${img} class="card-img-top" alt="...">
         <div style="position: absolute;top: 0;right: 0;">
             <button class="btn btn-danger">${info?.accuracy?.score} Accuracy</button>
+        </div>
+
+        <div>
+            <h5>${inputData}</h5>
+            <h6>${outputData ? outputData : 'no Data Found'}</6>
         </div>
         
     `
